@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Sapana ji 💖</title>
+    <style>
+        body {
+            background-color: #fff0f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+        #mainContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        h1 { color: #ff4d6d; font-size: 2rem; margin: 20px 0; position: relative; z-index: 2; }
+        .gif-container { position: relative; z-index: 2; }
+        .gif-container img { width: 230px; border-radius: 20px; }
+        
+        .buttons-wrapper {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            position: relative;
+            width: 100%;
+            height: 50px; /* फिक्स्ड हाइट ताकि नो बटन इसी के पास रहे */
+        }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        #yesBtn { 
+            background-color: #ff4d6d; 
+            color: white; 
+            position: relative;
+            z-index: 5; 
+        }
+        
+        #noBtn { 
+            background-color: #808080; 
+            color: white; 
+            position: absolute; /* रैंडम मूवमेंट के लिए */
+            z-index: 100;
+            white-space: nowrap;
+            left: 55%; /* शुरूआती पोजीशन Yes के पास */
+        }
+
+        .success-message { display: none; z-index: 1000; position: relative; }
+    </style>
+</head>
+<body>
+
+    <div id="mainContainer">
+        <div class="gif-container">
+            <img src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif">
+        </div>
+        <h1>Sapana ji, will you be my Valentine? 🌹</h1>
+        <div class="buttons-wrapper">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div class="success-message" id="successMessage">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJpYnE0Z3BqYnE0Z3BqYnE0Z3BqYnE0Z3BqYnE0Z3BqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/26FLdmIp6wJr91JAI/giphy.gif" width="280">
+        <h1 style="color: #ff4d6d;">Hehehe, I knew it! ❤️</h1>
+        <p style="font-size: 1.2rem; color: #ff4d6d;">Best decision ever! See you soon. 🥰</p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainContainer = document.getElementById('mainContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        let yesScale = 1;
+        const messages = [
+            "No", "Are you sure?", "Sapana ji, please?", "Pukka Pukka??", 
+            "Think again!", "Dil tod doge?", "I'm gonna cry...", 
+            "Look at the cute cat!", "Just click Yes already!", "Pretty please? ❤️"
+        ];
+        let msgIndex = 0;
+
+        noBtn.addEventListener('click', () => {
+            // "No" बटन को सिर्फ मेन बॉडी के पास (Container के अंदर) ही मूव करना
+            // हम इसे सेंटर से -150px से +150px के बीच रखेंगे
+            const randomX = Math.floor(Math.random() * 300) - 150; 
+            const randomY = Math.floor(Math.random() * 200) - 100;
+            
+            // CSS Transform का यूज़ करके इसे मूव करना ज्यादा स्मूथ रहता है
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+            // टेक्स्ट बदलना
+            msgIndex = (msgIndex + 1) % messages.length;
+            noBtn.innerText = messages[msgIndex];
+
+            // "Yes" को तब तक बढ़ाना जब तक वो पूरी स्क्रीन न ढँक ले
+            yesScale += 0.8; 
+            yesBtn.style.transform = `scale(${yesScale})`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            mainContainer.style.display = 'none';
+            successMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
