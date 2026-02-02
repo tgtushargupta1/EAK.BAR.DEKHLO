@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Sapana ji 💖</title>
+    <style>
+        body {
+            background-color: #fff0f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container { padding: 20px; }
+        h1 { color: #ff4d6d; font-size: 2rem; margin: 20px 0; }
+        .gif-container img { width: 230px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .buttons { display: flex; gap: 15px; justify-content: center; align-items: center; margin-top: 20px; flex-wrap: wrap; }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+
+        #yesBtn { background-color: #ff4d6d; color: white; }
+        #noBtn { background-color: #808080; color: white; }
+
+        .success-message { display: none; }
+        .success-message h1 { font-size: 2.5rem; color: #ff4d6d; }
+    </style>
+</head>
+<body>
+
+    <div id="mainContainer">
+        <div class="gif-container">
+            <img id="displayGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJpYnE0Z3BqYnE0Z3BqYnE0Z3BqYnE0Z3BqYnE0Z3BqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/3o7TKoWXm3okO1kgHC/giphy.gif" alt="Cute Cat">
+        </div>
+        <h1>Sapana ji, will you be my Valentine? 🌹</h1>
+        <div class="buttons">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div class="success-message" id="successMessage">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJpYnE0Z3BqYnE0Z3BqYnE0Z3BqYnE0Z3BqYnE0Z3BqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/26FLdmIp6wJr91JAI/giphy.gif" width="280">
+        <h1>Hehehe, I knew it! ❤️</h1>
+        <p style="font-size: 1.2rem; color: #ff4d6d;">Best decision ever! See you soon. 🥰</p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainContainer = document.getElementById('mainContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        let yesScale = 1;
+        const messages = [
+            "No", "Are you sure?", "Pukka?", "Think again, Sapana ji!", 
+            "Plzzzzzz", "I'll be so sad :(", "Very very sad", "Okay, just say yes!"
+        ];
+        let msgIndex = 0;
+
+        noBtn.addEventListener('click', () => {
+            // Change "No" button text
+            msgIndex = (msgIndex + 1) % messages.length;
+            noBtn.innerText = messages[msgIndex];
+
+            // Make "Yes" button huge
+            yesScale += 0.4;
+            yesBtn.style.transform = `scale(${yesScale})`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            mainContainer.style.display = 'none';
+            successMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
